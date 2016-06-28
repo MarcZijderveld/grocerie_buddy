@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity
     private ArrayAdapter adapter;
 
     @Override
+    //In the on create the list is initialized and the onclick handler is set for all the seperate items in the listview.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -69,6 +70,8 @@ public class MainActivity extends AppCompatActivity
         LoadGroceries();
     }
 
+    //The load groceries function makes a new GET request using the AppController.
+    //The string request gets all the values from the API using Volley.
     private void LoadGroceries() {
         // Tag used to cancel the request
         String tag_string_req = "req_events";
@@ -89,6 +92,8 @@ public class MainActivity extends AppCompatActivity
                 URL, new Response.Listener<String>()
         {
             @Override
+            //The on respoinse function actually checks if the values are correct with the try function, otherwise a error is returned.
+            // After that all the values are filtered into a general "Grocerie" class and put into the array list.
             public void onResponse(String response)
             {
                 Log.d("", "Grocerie Response: " + response.toString());
@@ -137,6 +142,7 @@ public class MainActivity extends AppCompatActivity
         }, new Response.ErrorListener() {
 
             @Override
+            //Error handling for the Onresponse function using Volley.
             public void onErrorResponse(VolleyError error) {
                 Log.e("" , "Login Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(),
@@ -145,12 +151,10 @@ public class MainActivity extends AppCompatActivity
         }) {
 
             @Override
+            //Send extra parameters with the get request (in this  case not used but still implemented incase)
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
-
-                AppConfig.preferenceSettings = getSharedPreferences(AppConfig.PREFERENCE_NAME, AppConfig.PREFERENCE_MODE_PRIVATE);
-                final String allowedCrownStone = AppConfig.preferenceSettings.getString("crownstone", "default");
 
                 //params.put("alarm_id", allowedCrownStone);
 
@@ -163,6 +167,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    //Inflate the options menu.
     public boolean onCreateOptionsMenu(Menu menu)
     {
         MenuInflater inflator = getMenuInflater();
@@ -171,6 +176,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    //Check which option is clicked in the menu and process the result.
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {

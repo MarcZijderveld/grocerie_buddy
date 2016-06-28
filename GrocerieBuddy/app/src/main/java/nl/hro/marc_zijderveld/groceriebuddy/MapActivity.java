@@ -10,6 +10,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+//Loads the map for the shop, in this activity the shop is loaded.
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -17,6 +18,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     private Shop s;
 
     @Override
+    //Creat the map.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
@@ -36,6 +38,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
      * installed Google Play services and returned to the app.
      */
     @Override
+    //When the map is ready and created, set the marker for the lat / lon of the shop and then zoom the map.
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 

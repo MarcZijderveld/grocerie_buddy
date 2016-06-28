@@ -2,9 +2,7 @@ package nl.hro.marc_zijderveld.groceriebuddy;
 
 import java.io.Serializable;
 
-/**
- * Created by mwz_2 on 6/28/2016.
- */
+//Location class which is serializable for the API data.
 public class Location implements Serializable {
     public int   latitude,
                     longitude;

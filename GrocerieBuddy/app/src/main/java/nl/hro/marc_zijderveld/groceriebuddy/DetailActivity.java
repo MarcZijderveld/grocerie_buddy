@@ -12,6 +12,8 @@ public class DetailActivity extends AppCompatActivity {
     private Grocerie g;
 
     @Override
+    //Creates the detail view and fills all the appointed text fields with the data from the Grocery class retrieved from the main activity.
+    //Also defines the onclick function for the map button at the bottom of the activity.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
