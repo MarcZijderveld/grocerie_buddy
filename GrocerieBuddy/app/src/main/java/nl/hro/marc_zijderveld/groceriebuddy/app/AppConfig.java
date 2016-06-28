@@ -6,18 +6,13 @@ import android.content.SharedPreferences;
  * Created by Sleepyz on 6/1/2016.
  */
 public class AppConfig {
-    // Server user login url
-    public static String URL_LOGIN = "http://project.cmi.hr.nl/2015_2016/emedia_mt2b_t3/burguard_api/login.php";
 
-    // Server user register url
-    public static String URL_REGISTER = "http://project.cmi.hr.nl/2015_2016/emedia_mt2b_t3/burguard_api/register.php";
-
-    public static String URL_EVENTS = "http://project.cmi.hr.nl/2015_2016/emedia_mt2b_t3/burguard_api/get_alarm.php";
+    public static String ULR_GROCERIES = "http://docent.cmi.hro.nl/bootb/service/products";
 
     public static SharedPreferences preferenceSettings;
     public static SharedPreferences.Editor preferenceEditor;
 
     public static final int PREFERENCE_MODE_PRIVATE = 0;
 
-    public static String PREFERENCE_NAME = "crownstone";
+    public static String PREFERENCE_NAME = "groceries";
 }

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Grocerie Buddy</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="price">Price</string>
+    <string name="winkel">Winkel</string>
+    <string name="shop_location">Shop Location</string>
+    <string name="title_activity_map">Map</string>
 </resources>
