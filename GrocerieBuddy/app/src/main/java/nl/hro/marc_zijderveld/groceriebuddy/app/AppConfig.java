@@ -9,6 +9,8 @@ public class AppConfig {
 
     public static String ULR_GROCERIES = "http://docent.cmi.hro.nl/bootb/service/products";
 
+    public static String ULR_GROCERIES_NONFOOD = "http://docent.cmi.hro.nl/bootb/service/products/nonfood";
+
     public static SharedPreferences preferenceSettings;
     public static SharedPreferences.Editor preferenceEditor;
 

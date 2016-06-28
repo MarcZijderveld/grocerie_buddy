@@ -6,4 +6,6 @@
     <string name="winkel">Winkel</string>
     <string name="shop_location">Shop Location</string>
     <string name="title_activity_map">Map</string>
+    <string name="settings">Settings</string>
+    <string name="non_food">Non Food</string>
 </resources>

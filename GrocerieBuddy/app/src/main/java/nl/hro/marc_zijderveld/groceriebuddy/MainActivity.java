@@ -30,6 +30,7 @@ import java.util.Map;
 import nl.hro.marc_zijderveld.groceriebuddy.app.AppConfig;
 import nl.hro.marc_zijderveld.groceriebuddy.app.AppController;
 
+///The main activity is the screen where all the groceries or products get downloaded from the API and displayed in the list view.
 public class MainActivity extends AppCompatActivity
 {
     public ArrayList<Grocerie> groceries;
@@ -65,15 +66,27 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        checkEvents();
+        LoadGroceries();
     }
 
-    private void checkEvents() {
+    private void LoadGroceries() {
         // Tag used to cancel the request
         String tag_string_req = "req_events";
 
+        groceries.clear();
+        grocerieStrings.clear();
+
+        boolean nonfood = getSharedPreferences("groceries", MODE_PRIVATE).getBoolean("nonfood", false);
+
+        String URL = "";
+
+        if(nonfood)
+            URL = AppConfig.ULR_GROCERIES_NONFOOD;
+        else
+            URL = AppConfig.ULR_GROCERIES;
+
         StringRequest strReq = new StringRequest(Request.Method.GET,
-                AppConfig.ULR_GROCERIES, new Response.Listener<String>()
+                URL, new Response.Listener<String>()
         {
             @Override
             public void onResponse(String response)
@@ -91,7 +104,7 @@ public class MainActivity extends AppCompatActivity
                         Grocerie g = new Grocerie();
 
                         g.name = childJSONObject.getString("name");
-                        g.price = childJSONObject.getString("price");
+                        g.price = childJSONObject.getDouble("price");
                         g.description = childJSONObject.getString("description");
                         g.image = childJSONObject.getString("image");
 
@@ -111,7 +124,7 @@ public class MainActivity extends AppCompatActivity
 
                         groceries.add(g);
 
-                        grocerieStrings.add(g.name + " - € " + g.price);
+                        grocerieStrings.add(g.name + " \n € " + g.price);
 
                         adapter.notifyDataSetChanged();
                     }
@@ -153,7 +166,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu)
     {
         MenuInflater inflator = getMenuInflater();
-        inflator.inflate(R.menu.activity_menu, menu);
+        inflator.inflate(R.menu.menu, menu);
         return true;
     }
 
@@ -161,16 +174,13 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-            case R.id.logout:
-                onButtonLogOff();
+            case R.id.settings:
+                Intent intent= new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
+
                 return true;
-            case R.id.events:
-                Intent intent1 = new Intent(BluetoothActivity.this, EventActivity.class);
-                startActivity(intent1);
-                return true;
-            case R.id.friends:
-                Intent intent2 = new Intent(BluetoothActivity.this, WhitelistActivity.class);
-                startActivity(intent2);
+            case R.id.refresh:
+                LoadGroceries();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

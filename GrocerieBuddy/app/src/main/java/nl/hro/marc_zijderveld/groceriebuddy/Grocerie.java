@@ -9,8 +9,9 @@ public class Grocerie implements Serializable{
 
     public String   name,
                     description,
-                    price,
                     image;
 
     public Shop     shop;
+
+    public double   price;
 }
